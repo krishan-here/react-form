@@ -1,5 +1,6 @@
 import { useState } from "react";
 import logo from "../donation.png";
+import Input from "./Input.jsx";
 
 function Form() {
   const [enteredValues, setEnteredValues] = useState({
@@ -63,47 +64,37 @@ function Form() {
       </header>
 
       <form onSubmit={handleFormSubmit}>
-        <div className="input-group">
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={enteredValues.name}
-            onBlur={() => handleInputBlur("name")}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-          />
-        </div>
+        <Input
+          label="Name"
+          id="name"
+          type="text"
+          name="name"
+          value={enteredValues.name}
+          onBlur={() => handleInputBlur("name")}
+          onChange={(e) => handleInputChange("name", e.target.value)}
+        />
 
-        <div className="input-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            value={enteredValues.email}
-            onBlur={() => handleInputBlur("email")}
-            onChange={(e) => handleInputChange("email", e.target.value)}
-          />
-          {emailIsInvalid && (
-            <p className="error-text">Please enter valid email address.</p>
-          )}
-        </div>
+        <Input
+          label="Email"
+          id="email"
+          type="text"
+          name="email"
+          value={enteredValues.email}
+          onBlur={() => handleInputBlur("email")}
+          onChange={(e) => handleInputChange("email", e.target.value)}
+          error={emailIsInvalid && "Please enter valid email address."}
+        />
 
-        <div className="input-group">
-          <label htmlFor="amount">How much would you like to donate?</label>
-          <input
-            type="text"
-            id="amount"
-            name="amount"
-            value={enteredValues.amount}
-            onBlur={() => handleInputBlur("amount")}
-            onChange={(e) => handleInputChange("amount", e.target.value)}
-          />
-          {amountIsInvalid && (
-            <p className="error-text">Minimum donation should be 1000$</p>
-          )}
-        </div>
+        <Input
+          label="How much would you like to donate?"
+          type="text"
+          id="amount"
+          name="amount"
+          value={enteredValues.amount}
+          onBlur={() => handleInputBlur("amount")}
+          onChange={(e) => handleInputChange("amount", e.target.value)}
+          error={amountIsInvalid && "Minimum donation should be 1000$"}
+        />
 
         <div className="input-checkbox">
           <input type="checkbox" />
